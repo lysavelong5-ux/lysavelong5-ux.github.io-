@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Movie Recap Script Generator</title>
+    <title>Creator Multi-Tools</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;700&display=swap" rel="stylesheet">
@@ -11,75 +11,184 @@
         body { font-family: 'Kantumruy Pro', sans-serif; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-purple-600 to-indigo-800 min-h-screen p-4 flex items-center justify-center">
+<body class="bg-gradient-to-br from-gray-900 to-indigo-950 min-h-screen text-gray-100 p-4 py-8">
 
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-6 md:p-8">
-        <div class="text-center mb-6">
-            <span class="bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Content Creator Tool</span>
-            <h1 class="text-2xl font-bold text-gray-800 mt-2">ប្រព័ន្ធជំនួយសរសេរអត្ថបទសម្រាយរឿង</h1>
-            <p class="text-gray-500 text-sm mt-1">បំប្លែងសាច់រឿងសង្ខេប ទៅជា Script សម្រាប់ធ្វើ Video TikTok ឬ YouTube</p>
-        </div>
-
-        <div class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">ចំណងជើងរឿង (Movie Title)</label>
-                <input type="text" id="movieTitle" placeholder="ឧទាហរណ៍៖ Avatar 2..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm">
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">សាច់រឿងសង្ខេប ឬ តម្រុយសំខាន់ៗ (Plot Points)</label>
-                <textarea id="moviePlot" rows="4" placeholder="រៀបរាប់ពីដំណើររឿងផ្តើម ឈុតឆាកជក់ចិត្ត និងភាគបញ្ចប់..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"></textarea>
-            </div>
+    <div class="max-w-2xl mx-auto">
+        
+        <!-- Header & Menu Switcher (ប៊ូតុងប្ដូរផ្ទាំង Tool) -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold tracking-tight mb-2">🎬 Creator Hub Tools</h1>
+            <p class="text-gray-400 text-sm mb-6">ជ្រើសរើស Tool ដែលបងចង់ប្រើប្រាស់ខាងក្រោម</p>
             
-            <button onclick="generateRecapScript()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 rounded-xl transition duration-200 shadow-lg shadow-purple-500/30">
-                បង្កើត Script សម្រាយរឿងឥឡូវនេះ
-            </button>
+            <div class="flex justify-center gap-2 bg-gray-800/80 p-1.5 rounded-2xl backdrop-blur-md border border-gray-700">
+                <button onclick="switchTab('recap')" id="btn-recap" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all bg-purple-600 text-white shadow-lg">
+                    📝 សម្រាយរឿង
+                </button>
+                <button onclick="switchTab('tts')" id="btn-tts" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-gray-400 hover:text-white">
+                    🔊 Text to Voice
+                </button>
+                <button onclick="switchTab('fonts')" id="btn-fonts" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-gray-400 hover:text-white">
+                    🔤 Text to Font
+                </button>
+            </div>
         </div>
 
-        <div id="resultSection" class="mt-6 hidden">
-            <label class="block text-sm font-medium text-gray-700 mb-1">លទ្ធផល Script សម្រាប់យកទៅអាន៖</label>
-            <div id="outputScript" class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-sm text-gray-700 whitespace-pre-line max-h-60 overflow-y-auto"></div>
-            <button onclick="copyScript()" class="mt-3 bg-gray-800 hover:bg-gray-900 text-white text-xs px-4 py-2 rounded-lg transition">
-                ចម្លងអត្ថបទ (Copy Script)
-            </button>
+        <!-- ផ្ទាំងទី ១៖ Tool សម្រាយរឿង (Recap Tool) -->
+        <div id="tab-recap" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8">
+            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធសរសេរ Script សម្រាយរឿង</h2>
+            <p class="text-gray-500 text-sm mb-6">បង្កើតអត្ថបទរៀបរាប់សាច់រឿងសម្រាប់ทำ Video</p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">ចំណងជើងរឿង</label>
+                    <input type="text" id="movieTitle" placeholder="ឧទាហរណ៍៖ Avatar 2..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">សាច់រឿងសង្ខេប</label>
+                    <textarea id="moviePlot" rows="4" placeholder="រៀបរាប់ពីដំណើររឿង..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"></textarea>
+                </div>
+                <button onclick="generateRecapScript()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-purple-500/30">
+                    បង្កើត Script ឥឡូវនេះ
+                </button>
+            </div>
+
+            <div id="resultSection" class="mt-6 hidden">
+                <label class="block text-sm font-medium text-gray-700 mb-1">លទ្ធផល Script៖</label>
+                <div id="outputScript" class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-sm text-gray-700 whitespace-pre-line max-h-48 overflow-y-auto"></div>
+                <button onclick="copyScript()" class="mt-3 bg-gray-800 hover:bg-gray-900 text-white text-xs px-4 py-2.5 rounded-lg transition">
+                    ចម្លងអត្ថបទ (Copy Script)
+                </button>
+            </div>
         </div>
+
+        <!-- ផ្ទាំងទី ២៖ Tool Text to Voice -->
+        <div id="tab-tts" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
+            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធអានអត្ថបទជាសំឡេង (Text to Voice)</h2>
+            <p class="text-gray-500 text-sm mb-6">យកអត្ថបទមកដាក់បញ្ចូលដើម្បីឱ្យ Browser អានជាសំឡេង</p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">អត្ថបទសម្រាប់អាន</label>
+                    <textarea id="ttsText" rows="5" placeholder="វាយអត្ថបទរបស់អ្នកទីនេះ..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"></textarea>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="speakCustomText()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-blue-500/30">
+                        🔊 ចាប់ផ្ដើមអាន
+                    </button>
+                    <button onclick="stopSpeech()" class="bg-red-500 hover:bg-red-600 text-white font-medium px-5 py-3 rounded-xl transition">
+                        ឈប់អាន
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ផ្ទាំងទី ៣៖ Tool Text to Font -->
+        <div id="tab-fonts" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
+            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធបម្លែងអត្ថបទជាហ្វុន្តែស្អាតៗ</h2>
+            <p class="text-gray-500 text-sm mb-6">បម្លែងអត្ថបទធម្មតាទៅជាអក្សរพิเศษសម្រាប់ផុសលើ TikTok</p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">អត្ថបទដើម</label>
+                    <input type="text" id="normalText" oninput="convertFonts()" placeholder="វាយអត្ថបទទីនេះ..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                </div>
+
+                <div class="space-y-3">
+                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
+                        <span id="font1" class="font-mono text-gray-700 break-all mr-2">ហ្វុន្តែទម្រង់ទី១</span>
+                        <button onclick="copyFont('font1')" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+                    </div>
+                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
+                        <span id="font2" class="font-mono text-gray-700 break-all mr-2">ហ្វុន្តែទម្រង់ទី២</span>
+                        <button onclick="copyFont('font2')" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
+        // ប្ដូរផ្ទាំង Tab ទៅវិញទៅមក
+        function switchTab(tabName) {
+            // លាក់គ្រប់ Tab ទាំងអស់
+            document.querySelectorAll('.tool-content').forEach(el => el.classList.add('hidden'));
+            // ដក Design ប៊ូតុងទាំងអស់ចេញ
+            document.querySelectorAll('[id^="btn-"]').forEach(el => {
+                el.className = "flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-gray-400 hover:text-white";
+            });
+
+            // បង្ហាញ Tab ដែលបានជ្រើសរើស
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+            
+            // ใส่ Style ឱ្យប៊ូតុងដែលកំពុងgetActive
+            const activeBtn = document.getElementById('btn-' + tabName);
+            activeBtn.className = "flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-white shadow-lg " + 
+                (tabName === 'recap' ? 'bg-purple-600' : tabName === 'tts' ? 'bg-blue-600' : 'bg-indigo-600');
+        }
+
+        // មុខងារ Script Generator
         function generateRecapScript() {
             const title = document.getElementById('movieTitle').value;
             const plot = document.getElementById('moviePlot').value;
-            const resultSection = document.getElementById('resultSection');
-            const outputScript = document.getElementById('outputScript');
-
-            if(!title || !plot) {
-                alert('សូមបំពេញចំណងជើងរឿង និងសាច់រឿងសង្ខេបជាមុនសិន!');
-                return;
-            }
-
-            // បង្កើតទម្រង់ Script សម្រាយរឿងបែបចាប់អារម្មណ៍ (Hook -> Body -> Outro)
-            const generatedText = `🎬 សួស្ដីអ្នកទាំងអស់គ្នា! ថ្ងៃនេះយើងនាំយករឿង "${title}" មកសម្រាយជូនទស្សនាហ្មង!
+            if(!title || !plot) { alert('សូមបំពេញព័ត៌មានសិន!'); return; }
             
-🔥 ផ្តើមសាច់រឿង៖
-រឿងនេះគឺនិយាយពី ${plot.substring(0, 100)}... 
-
-⚡ ចំណុចរបត់ និងឈុតឆាករំភើប៖
-តួអង្គត្រូវប្រឈមមុខនឹងឧបសគ្គយ៉ាងធំធេង ដែលធ្វើឱ្យពួកយើងអត់ទ្រាំមើលមិនបាន។ ${plot}
-
-🏁 សន្និដ្ឋាន និងភាគបញ្ចប់៖
-តើដំណើររឿងនឹងបញ្ចប់ទៅយ៉ាងណាដែរ? បើចង់ដឹងច្បាស់ កុំភ្លេចតាមដានទស្សនាទាំងអស់គ្នាណា! 
----
-#KhmerRecap #សម្រាយរឿង #${title.replace(/\s+/g, '')}`;
-
-            outputScript.innerText = generatedText;
-            resultSection.classList.remove('hidden');
+            const text = `🎬 សួស្ដី! ថ្ងៃនេះយើងសម្រាយរឿង "${title}" ជូនទស្សនា!\n\n${plot}\n\n👉 កុំភ្លេច Follow វីដេអូសាច់រឿងបន្តទៀតណា!`;
+            document.getElementById('outputScript').innerText = text;
+            document.getElementById('resultSection').classList.remove('hidden');
         }
 
         function copyScript() {
-            const text = document.getElementById('outputScript').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('បានចម្លង Script រួចរាល់!');
-            });
+            navigator.clipboard.writeText(document.getElementById('outputScript').innerText);
+            alert('បានចម្លង Script រួចរាល់!');
+        }
+
+        // មុខងារ Text to Voice
+        function speakCustomText() {
+            const text = document.getElementById('ttsText').value;
+            if(!text) { alert('សូមបញ្ចូលអត្ថបទសម្រាប់អាន!'); return; }
+            
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'km-KH';
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Browser ของท่านไม่รองรับ Text-to-Speech');
+            }
+        }
+
+        function stopSpeech() {
+            if ('speechSynthesis' in window) { window.speechSynthesis.cancel(); }
+        }
+
+        // មុខងារ Text to Fonts
+        function convertFonts() {
+            const val = document.getElementById('normalText').value;
+            if(!val) {
+                document.getElementById('font1').innerText = "ហ្វុន្តែទម្រង់ទី១";
+                document.getElementById('font2').innerText = "ហ្វុន្តែទម្រង់ទី២";
+                return;
+            }
+            document.getElementById('font1').innerText = toBoldSans(val);
+            document.getElementById('font2').innerText = toFullWidth(val);
+        }
+
+        function toBoldSans(str) {
+            const map = { a: '𝗮', b: '𝗯', c: '𝗰', d: '𝗱', e: '𝗲', f: '𝗳', g: '𝗴', h: '𝗵', i: '𝗶', j: '𝗷', k: '𝗸', l: '𝗹', m: '𝗺', n: '𝗻', o: '𝗼', p: '𝗽', q: '𝗾', r: '𝗿', s: '𝘀', t: '𝘁', u: '𝘂', v: '𝘃', w: '𝘄', x: '𝘅', y: '𝘆', z: '𝘇', A: '𝗔', B: '𝗕', C: '𝗖', D: '𝗗', E: '𝗘', F: '𝗙', G: '𝗚', H: '𝗛', I: '𝗜', J: '𝗝', K: '𝗞', L: '𝗟', M: '𝗠', N: '𝗡', O: '𝗢', P: '𝗣', Q: '𝗤', R: '𝗥', S: '𝗦', T: '𝗧', U: '𝗨', V: '𝗩', W: '𝗪', X: '𝗫', Y: '𝗬', Z: '𝗭' };
+            return str.split('').map(char => map[char] || char).join('');
+        }
+
+        function toFullWidth(str) {
+            return str.split('').map(char => {
+                const code = char.charCodeAt(0);
+                return (code >= 33 && code <= 126) ? String.fromCharCode(code + 65248) : char;
+            }).join('');
+        }
+
+        function copyFont(id) {
+            navigator.clipboard.writeText(document.getElementById(id).innerText);
+            alert('បានចម្លងហ្វុន្តែរួចរាល់!');
         }
     </script>
 
