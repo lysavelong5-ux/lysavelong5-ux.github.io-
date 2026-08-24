@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Reel Downloader</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kantumruy Pro', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-indigo-600 min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 text-center">
+        <div class="mb-6">
+            <span class="bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Fast & Free</span>
+            <h1 class="text-2xl font-bold text-gray-800 mt-2">Facebook Reel Downloader</h1>
+            <p class="text-gray-500 text-sm mt-1">ទាញយកវីដេអូ Facebook Reels យ៉ាងងាយស្រួល</p>
+        </div>
+
+        <div class="space-y-4">
+            <input type="text" id="reelUrl" placeholder="បិទភ្ជាប់ Link ទីនេះ..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+            
+            <button onclick="downloadVideo()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition duration-200 shadow-lg shadow-blue-500/30">
+                ទាញយកឥឡូវនេះ (Download)
+            </button>
+        </div>
+
+        <div id="result" class="mt-6 text-sm text-gray-600"></div>
+    </div>
+
+    <script>
+        function downloadVideo() {
+            const url = document.getElementById('reelUrl').value;
+            const resultDiv = document.getElementById('result');
+            
+            if(!url) {
+                alert('សូមបញ្ចូល Link ជាមុនសិន!');
+                return;
+            }
+
+            resultDiv.innerHTML = `<p class="text-blue-500 animate-pulse">កំពុងដំណើរការ... សូមរង់ចាំបន្តិច!</p>`;
+            
+            setTimeout(() => {
+                resultDiv.innerHTML = `<a href="#" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition">ចុចទីនេះដើម្បីទាញយកវីដេអូ (Demo)</a>`;
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
