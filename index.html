@@ -189,19 +189,24 @@
                 </div>
             </div>
 
-            <!-- 8. AI Quiz (Updated with Score, Money exchange, and continuous loop) -->
+            <!-- 8. AI Quiz (Saved in LocalStorage & Telegram Admin Contact) -->
             <div id="tab-quiz" class="tool-content space-y-6 hidden">
-                <div class="flex justify-between items-center bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+                <div class="flex flex-col md:flex-row justify-between items-center bg-emerald-50 p-4 rounded-2xl border border-emerald-200 gap-4">
                     <div>
-                        <p class="text-xs text-emerald-700 font-semibold">ពិន្ទុសរុប៖ <strong id="quizScore" class="text-emerald-900 text-base">0</strong> ពិន្ទុ</p>
+                        <p class="text-xs text-emerald-700 font-semibold">ពិន្ទុសរុប (រក្សាទុកក្នុងម៉ាស៊ីន)៖ <strong id="quizScore" class="text-emerald-900 text-base">0</strong> ពិន្ទុ</p>
                         <p class="text-xs text-emerald-700 font-semibold mt-1">ទឹកប្រាក់ប្ដូរបាន៖ <strong id="quizMoney" class="text-emerald-900 text-base">0.00$</strong></p>
                     </div>
-                    <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-medium">១០០ ពិន្ទុ = 0.05$</span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-medium">១០០ ពិន្ទុ = 0.05$</span>
+                        <button onclick="contactAdminTelegram()" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-md">
+                            📩 ទាក់ទង Admin (ប្ដូរលុយ)
+                        </button>
+                    </div>
                 </div>
 
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-1">🎯 AI Quiz Game</h2>
-                    <p class="text-gray-500 text-sm">ឆ្លើយសំណួរដើម្បីប្រមូលពិន្ទុដូរយកទឹកប្រាក់!</p>
+                    <p class="text-gray-500 text-sm">ឆ្លើយសំណួរស្វ័យប្រវត្តិន្ដគ្មានទីបញ្ចប់ ដើម្បីប្រមូលពិន្ទុដូរទឹកប្រាក់!</p>
                 </div>
 
                 <div id="quizBox" class="space-y-4">
@@ -303,35 +308,81 @@
             if(activeBtn) activeBtn.className = `py-3 px-2 rounded-2xl text-xs font-semibold transition-all text-white shadow-lg ${buttons[tabName].color} flex flex-col items-center gap-1 scale-105`;
         }
 
-        // --- ລະບົບ Quiz ថ្មី (ឆ្លើយហើយចេញសំណួរថ្មី និងគណនាពិន្ទុ/លុយ) ---
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const container = document.getElementById('chatContainer');
+            const text = input.value.trim();
+            if(!text) return;
+            container.innerHTML += `<div class="bg-indigo-600 text-white p-3 rounded-2xl max-w-[80%] text-sm self-end">${text}</div>`;
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+            setTimeout(() => {
+                container.innerHTML += `<div class="bg-indigo-100 text-indigo-900 p-3 rounded-2xl max-w-[80%] text-sm self-start">សួស្ដី! ខ្ញុំបានទទួលសំណួររបស់អ្នកហើយ៖ "${text}" ។ នេះជាចម្លើយគំរូពី AI Assistant!</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 800);
+        }
+
+        // --- ລະບົບ Quiz រាប់លានសំនួរ Save ក្នុង LocalStorage និងប៊ូតុងទាក់ទង Admin ---
         let totalScore = parseInt(localStorage.getItem('quiz_score')) || 0;
         updateScoreDisplay();
 
-        const quizPool = [
-            { q: "តើប្រព័ន្ធប្រតិបត្តិការ Android ត្រូវបានអភិវឌ្ឍដោយក្រុមហ៊ុនណា?", opts: ["Apple", "Google", "Microsoft", "Meta"], ans: 1 },
-            { q: "តើទីក្រុងភ្នំពេញស្ថិតនៅលើខេត្ត/ក្រុងអ្វី?", opts: ["ខេត្តកណ្ដាល", "រាជធានីភ្នំពេញ", "ខេត្តសៀមរាប", "ខេត្តបាត់ដំបង"], ans: 1 },
-            { q: "តើ HTML តំណាងឱ្យអ្វីក្នុងវិស័យបច្ចេកវិទ្យា?", opts: ["HyperText Markup Language", "High Tech Modern Language", "Hyper Transfer Machine Language", "Home Tool Multi Language"], ans: 0 },
-            { q: "តើប្រទេសកម្ពុជាមានព្រំប្រទល់ជាប់នឹងប្រទេសណាខ្លះនៅភាគខាងលិច?", opts: ["វៀតណាម", "ថៃ", "ឡាវ", "ចិន"], ans: 1 },
-            { q: "តើ 5 + 5 * 2 ស្មើនឹងប៉ុន្មាន?", opts: ["20", "15", "25", "10"], ans: 1 }
-        ];
-
         function loadNextQuiz() {
-            const randomIndex = Math.floor(Math.random() * quizPool.length);
-            const current = quizPool[randomIndex];
+            const randType = Math.floor(Math.random() * 3);
+            let qText = "", opts = [], correctIdx = 0;
+
+            if (randType === 0) {
+                let num1 = Math.floor(Math.random() * 50) + 1;
+                let num2 = Math.floor(Math.random() * 50) + 1;
+                let ops = ['+', '-', '*'];
+                let chosenOp = ops[Math.floor(Math.random() * ops.length)];
+                let realAns = eval(`${num1} ${chosenOp} ${num2}`);
+
+                qText = `តើលទ្ធផលនៃកន្សោម ${num1} ${chosenOp} ${num2} ស្មើនឹងប៉ុន្មាន?`;
+                let wrong1 = realAns + (Math.floor(Math.random() * 5) + 1);
+                let wrong2 = realAns - (Math.floor(Math.random() * 5) + 1);
+                let wrong3 = realAns + 10;
+
+                opts = [realAns, wrong1, wrong2, wrong3];
+                opts.sort(() => Math.random() - 0.5);
+                correctIdx = opts.indexOf(realAns);
+
+            } else if (randType === 1) {
+                const generalPool = [
+                    { q: "តើទឹកដីអង្គរវត្តស្ថិតនៅក្នុងខេត្តណា?", o: ["ខេត្តសៀមរាប", "ខេត្តបាត់ដំបង", "ខេត្តកំពត", "ខេត្តកណ្ដាល"], a: 0 },
+                    { q: "តើភាសា HTML តំណាងឱ្យអ្វីក្នុងវិស័យបច្ចេកវិទ្យា?", o: ["HyperText Markup Language", "High Tech Modern Language", "Hyper Transfer Machine Language", "Home Tool Multi Language"], a: 0 },
+                    { q: "តើភពណាមួយស្ថិតនៅជិតព្រះអាទិត្យជាងគេ?", o: ["ភពសុក្រ", "ភពពុធ", "ភពអង្គារ", "ភពព្រហស្បតិ៍"], a: 1 },
+                    { q: "តើប្រទេសកម្ពុជាមានព្រំប្រទល់ខាងកើតជាប់នឹងប្រទេសអ្វី?", o: ["ប្រទេសថៃ", "ប្រទេសឡាវ", "ប្រទេសវៀតណាម", "ប្រទេសចិន"], a: 2 },
+                    { q: "តើ RAM មានន័យថាជាអ្វីក្នុងកុំព្យូទ័រ?", o: ["Random Access Memory", "Read All Monitor", "Rapid Active Machine", "Real App Media"], a: 0 }
+                ];
+                let chosen = generalPool[Math.floor(Math.random() * generalPool.length)];
+                qText = chosen.q;
+                opts = [...chosen.o];
+                correctIdx = chosen.a;
+            } else {
+                let n1 = Math.floor(Math.random() * 10) + 2;
+                let n2 = n1 * n1;
+                qText = `តើឫសការេ (Square Root) នៃលេខ ${n2} ស្មើនឹងប៉ុន្មាន?`;
+                let wrong1 = n1 + 1;
+                let wrong2 = n1 - 1;
+                let wrong3 = n1 + 2;
+                opts = [n1, wrong1, wrong2, wrong3];
+                opts.sort(() => Math.random() - 0.5);
+                correctIdx = opts.indexOf(n1);
+            }
 
             let optsHtml = "";
-            current.opts.forEach((opt, idx) => {
+            opts.forEach((opt, idx) => {
                 optsHtml += `<label class="block p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:bg-emerald-50"><input type="radio" name="quizOpt" value="${idx}" class="mr-2"> ${opt}</label>`;
             });
 
             document.getElementById('quizBox').innerHTML = `
                 <div class="p-5 bg-emerald-50 rounded-2xl border border-emerald-200 space-y-3">
-                    <p class="font-bold text-emerald-900">${current.q}</p>
+                    <p class="font-bold text-emerald-900">${qText}</p>
                     <div class="space-y-2 text-sm" id="optContainer">
                         ${optsHtml}
                     </div>
                     <div id="quizFeedback" class="text-sm font-bold"></div>
-                    <button id="submitQuizBtn" onclick="checkQuizAnswer(${current.ans})" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-semibold">ផ្ទៀងផ្ទាត់ចម្លើយ</button>
+                    <button id="submitQuizBtn" onclick="checkQuizAnswer(${correctIdx})" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-semibold">ផ្ទៀងផ្ទាត់ចម្លើយ</button>
                 </div>
             `;
         }
@@ -345,15 +396,15 @@
 
             const userAns = parseInt(selected.value);
             if(userAns === correctIdx) {
-                feedback.innerHTML = `<span class="text-green-600">✅ ពិតជាត្រឹមត្រូវណាស់! អ្នកទទួលបាន +1 ពិន្ទុ។</span>`;
+                feedback.innerHTML = `<span class="text-green-600">✅ ឆ្លើយត្រូវ! អ្នកទទួលបាន +1 ពិន្ទុ។</span>`;
                 totalScore += 1;
                 localStorage.setItem('quiz_score', totalScore);
                 updateScoreDisplay();
             } else {
-                feedback.innerHTML = `<span class="text-red-600">❌ ចម្លើយខុសហើយ! សូមព្យាយាមម្ដងទៀត។</span>`;
+                feedback.innerHTML = `<span class="text-red-600">❌ ចម្លើយខុសហើយ! សូមព្យាយាមសំណួរថ្មីបន្តទៀត។</span>`;
             }
 
-            btn.innerText = "សំណួរជាបន្តបន្ទាប់ ➔";
+            btn.innerText = "សំណួរថ្មីបន្តទៀត ➔";
             btn.setAttribute("onclick", "loadNextQuiz()");
             btn.className = "bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-xs font-semibold";
         }
@@ -364,19 +415,12 @@
             document.getElementById('quizMoney').innerText = money.toFixed(4) + "$";
         }
 
-        // --- មុខងារផ្សេងៗទៀត ---
-        function sendChatMessage() {
-            const input = document.getElementById('chatInput');
-            const container = document.getElementById('chatContainer');
-            const text = input.value.trim();
-            if(!text) return;
-            container.innerHTML += `<div class="bg-indigo-600 text-white p-3 rounded-2xl max-w-[80%] text-sm self-end">${text}</div>`;
-            input.value = '';
-            container.scrollTop = container.scrollHeight;
-            setTimeout(() => {
-                container.innerHTML += `<div class="bg-indigo-100 text-indigo-900 p-3 rounded-2xl max-w-[80%] text-sm self-start">សួស្ដី! ខ្ញុំបានទទួលសំណួររបស់អ្នកហើយ៖ "${text}" ។ នេះជាចម្លើយគំរូពី AI Assistant!</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 800);
+        function contactAdminTelegram() {
+            let money = (totalScore / 100) * 0.05;
+            let message = `សួស្ដី Admin! ខ្ញុំចاونប្ដូរពិន្ទុ Quiz យកទឹកប្រាក់៖%0A- ពិន្ទុសរុប៖ ${totalScore} ពិន្ទុ%0A- ទឹកប្រាក់ស្មើនឹង៖ ${money.toFixed(2)}$`;
+            // ប្តូរ YOUR_ADMIN_USERNAME ទៅជា Username Telegram របស់បង (ឧទាហរណ៍: Seavlong)
+            let adminTelegram = "YOUR_ADMIN_USERNAME"; 
+            window.open(`https://t.me/${adminTelegram}?text=${message}`, '_blank');
         }
 
         function generateExam() {
