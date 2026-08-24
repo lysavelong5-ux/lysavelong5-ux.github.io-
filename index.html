@@ -17,9 +17,9 @@
         
         <!-- Header & Visitor Counter -->
         <header class="text-center mb-10">
-            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider border border-indigo-500/20">AI Smart Toolkit</span>
-            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 mb-2 text-white">🤖 AI Creator & Study Hub</h1>
-            <p class="text-gray-400 text-sm md:text-base mb-4">ប្រព័ន្ធជំនួយស្មារតី AI Chat, Quiz, Exam និង Math Solver</p>
+            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider border border-indigo-500/20">Professional Toolkit</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 mb-2 text-white">🎬 Creator & AI Smart Hub Tools</h1>
+            <p class="text-gray-400 text-sm md:text-base mb-4">ប្រព័ន្ធជំនួយស្មារតី និងឧបករណ៍បច្ចេកវិទ្យាសម្រាប់ Content Creators & Students</p>
             
             <div class="inline-flex items-center gap-2.5 bg-gray-800/90 border border-gray-700 px-5 py-2 rounded-full text-xs md:text-sm text-gray-300 shadow-xl backdrop-blur-md">
                 <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
@@ -28,28 +28,43 @@
         </header>
 
         <!-- Navigation Tabs (Buttons) -->
-        <nav class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-8">
-            <button onclick="switchTab('recap')" id="btn-recap" class="py-3 px-3 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-purple-600 text-white shadow-lg flex flex-col items-center gap-1">
-                <span class="text-lg">📝</span> សម្រាយរឿង
+        <nav class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-2 mb-8">
+            <button onclick="switchTab('recap')" id="btn-recap" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-purple-600 text-white shadow-lg flex flex-col items-center gap-1">
+                <span class="text-base">📝</span> សម្រាយរឿង
             </button>
-            <button onclick="switchTab('aichat')" id="btn-aichat" class="py-3 px-3 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
-                <span class="text-lg">💬</span> AI Chat (Gemini)
+            <button onclick="switchTab('tts')" id="btn-tts" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">🔊</span> Voice
             </button>
-            <button onclick="switchTab('quiz')" id="btn-quiz" class="py-3 px-3 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
-                <span class="text-lg">🎯</span> AI Quiz
+            <button onclick="switchTab('fonts')" id="btn-fonts" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">🔤</span> Font
             </button>
-            <button onclick="switchTab('exam')" id="btn-exam" class="py-3 px-3 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
-                <span class="text-lg">📚</span> AI Exam
+            <button onclick="switchTab('qr')" id="btn-qr" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">📷</span> QR Code
             </button>
-            <button onclick="switchTab('math')" id="btn-math" class="py-3 px-3 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
-                <span class="text-lg">📐</span> AI Math
+            <button onclick="switchTab('hook')" id="btn-hook" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">🔥</span> Hooks
+            </button>
+            <button onclick="switchTab('imglink')" id="btn-imglink" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">🖼️</span> Pic Link
+            </button>
+            <button onclick="switchTab('aichat')" id="btn-aichat" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">💬</span> AI Chat
+            </button>
+            <button onclick="switchTab('quiz')" id="btn-quiz" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">🎯</span> Quiz
+            </button>
+            <button onclick="switchTab('exam')" id="btn-exam" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">📚</span> Exam
+            </button>
+            <button onclick="switchTab('math')" id="btn-math" class="py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1">
+                <span class="text-base">📐</span> Math
             </button>
         </nav>
 
         <!-- Main Content Wrapper -->
         <main class="bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-10 border border-gray-100">
 
-            <!-- ផ្ទាំងទី ១៖ Tool សម្រាយរឿង -->
+            <!-- 1. សម្រាយរឿង -->
             <div id="tab-recap" class="tool-content space-y-6">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធសរសេរ Script សម្រាយរឿង</h2>
@@ -75,16 +90,98 @@
                 </div>
             </div>
 
-            <!-- ផ្ទាំងទី ២៖ AI Chat (Gemini Style) -->
+            <!-- 2. Text to Voice -->
+            <div id="tab-tts" class="tool-content space-y-6 hidden">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធអានអត្ថបទជាសំឡេង (Text to Voice)</h2>
+                    <p class="text-gray-500 text-sm">យកអត្ថបទមកដាក់បញ្ចូលដើម្បីឱ្យ Browser អានចេញមកជាសំឡេង</p>
+                </div>
+                <div class="space-y-4">
+                    <textarea id="ttsText" rows="5" placeholder="វាយអត្ថបទរបស់អ្នកទីនេះ..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl text-sm"></textarea>
+                    <div class="flex gap-3">
+                        <button onclick="speakCustomText()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg">🔊 ចាប់ផ្ដើមអាន</button>
+                        <button onclick="stopSpeech()" class="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-4 rounded-2xl transition">ឈប់</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Text to Font -->
+            <div id="tab-fonts" class="tool-content space-y-6 hidden">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធបម្លែងអត្ថបទជាហ្វុន្តែស្អាតៗ</h2>
+                    <p class="text-gray-500 text-sm">បម្លែងអត្ថបទអង់គ្លេសទៅជាស្ទីលពិសេសសម្រាប់ផុសលើ TikTok</p>
+                </div>
+                <div class="space-y-4">
+                    <input type="text" id="normalText" oninput="convertFonts()" placeholder="Type English text here..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl text-sm">
+                    <div class="space-y-3">
+                        <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 flex justify-between items-center text-sm">
+                            <span id="font1" class="font-mono text-gray-800 font-semibold mr-2">ស្ទីលទី១ (Bold Style)</span>
+                            <button onclick="copyFont('font1')" class="text-xs bg-indigo-600 text-white px-4 py-2 rounded-xl">Copy</button>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 flex justify-between items-center text-sm">
+                            <span id="font2" class="font-mono text-gray-800 font-semibold mr-2">ស្ទីលទី២ (Spaced Style)</span>
+                            <button onclick="copyFont('font2')" class="text-xs bg-indigo-600 text-white px-4 py-2 rounded-xl">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. QR Code -->
+            <div id="tab-qr" class="tool-content space-y-6 hidden">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធបង្កើត QR Code</h2>
+                    <p class="text-gray-500 text-sm">បម្លែង Link វីដេអូ ឬ Page ឱ្យទៅជារូបភាព QR Code</p>
+                </div>
+                <div class="space-y-4">
+                    <input type="text" id="qrInputUrl" placeholder="https://facebook.com/..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl text-sm">
+                    <button onclick="generateQRCode()" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg">បង្កើត QR Code</button>
+                </div>
+                <div id="qrResultSection" class="mt-6 text-center hidden space-y-4">
+                    <div class="inline-block p-4 bg-gray-50 border rounded-3xl"><img id="qrImage" src="" alt="QR Code" class="w-48 h-48 mx-auto rounded-xl"></div>
+                    <div><a id="downloadQrBtn" href="" download="qrcode.png" target="_blank" class="inline-block bg-gray-900 text-white text-xs px-6 py-3 rounded-xl">Download QR</a></div>
+                </div>
+            </div>
+
+            <!-- 5. Hook Titles -->
+            <div id="tab-hook" class="tool-content space-y-6 hidden">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធបង្កើតចំណងជើងទាក់ទាញ (Hook Titles)</h2>
+                    <p class="text-gray-500 text-sm">បង្កើតប្រយោគចាប់អារម្មណ៍ខ្លាំងសម្រាប់ដាក់លើ Thumbnail</p>
+                </div>
+                <div class="space-y-4">
+                    <input type="text" id="hookInput" placeholder="ឧទាហរណ៍៖ រឿងខ្មោចក្នុងព្រៃ..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl text-sm">
+                    <button onclick="generateHooks()" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg">បង្កើតចំណងជើងទាក់ទាញ</button>
+                </div>
+                <div id="hookResultSection" class="mt-6 hidden space-y-3">
+                    <div class="p-4 bg-gray-50 rounded-2xl border flex justify-between items-center text-sm"><span id="hook1" class="font-medium mr-2"></span><button onclick="copyHook('hook1')" class="text-xs bg-amber-600 text-white px-4 py-2 rounded-xl">Copy</button></div>
+                    <div class="p-4 bg-gray-50 rounded-2xl border flex justify-between items-center text-sm"><span id="hook2" class="font-medium mr-2"></span><button onclick="copyHook('hook2')" class="text-xs bg-amber-600 text-white px-4 py-2 rounded-xl">Copy</button></div>
+                    <div class="p-4 bg-gray-50 rounded-2xl border flex justify-between items-center text-sm"><span id="hook3" class="font-medium mr-2"></span><button onclick="copyHook('hook3')" class="text-xs bg-amber-600 text-white px-4 py-2 rounded-xl">Copy</button></div>
+                </div>
+            </div>
+
+            <!-- 6. Pic to Link -->
+            <div id="tab-imglink" class="tool-content space-y-6 hidden">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធបម្លែងរូបភាពទៅជា Link (Picture to Link)</h2>
+                    <p class="text-gray-500 text-sm">ជ្រើសរើសរូបភាពដើម្បីបង្កើត Link សម្រាប់ប្រើប្រាស់</p>
+                </div>
+                <div class="space-y-4">
+                    <input type="file" id="imageInput" accept="image/*" class="w-full px-4 py-3 border border-gray-300 rounded-2xl text-sm">
+                    <button onclick="convertImageToLink()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg">បម្លែងជា Link</button>
+                </div>
+                <div id="imgLinkResultSection" class="mt-6 hidden space-y-3">
+                    <div class="flex gap-2"><input type="text" id="generatedLinkOutput" readonly class="w-full px-4 py-3 bg-gray-50 border rounded-2xl text-xs font-mono"><button onclick="copyGeneratedLink()" class="text-xs bg-teal-600 text-white px-5 py-3 rounded-2xl font-semibold">Copy</button></div>
+                </div>
+            </div>
+
+            <!-- 7. AI Chat -->
             <div id="tab-aichat" class="tool-content space-y-6 hidden">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-1">💬 AI Chat (Gemini Assistant)</h2>
                     <p class="text-gray-500 text-sm">សាកសួរព័ត៌មាន ឬពិភាក្សាជាមួយជំនួយការផ្ទាល់ខ្លួន</p>
                 </div>
                 <div class="border border-gray-200 rounded-2xl p-4 bg-gray-50 h-80 overflow-y-auto space-y-3 flex flex-col" id="chatContainer">
-                    <div class="bg-indigo-100 text-indigo-900 p-3 rounded-2xl max-w-[80%] text-sm self-start">
-                        សួស្ដី! ខ្ញុំជា AI Assistant ។ តើថ្ងៃនេះខ្ញុំអាចជួយអ្វីដល់បងបានខ្លះ?
-                    </div>
+                    <div class="bg-indigo-100 text-indigo-900 p-3 rounded-2xl max-w-[80%] text-sm self-start">សួស្ដី! ខ្ញុំជា AI Assistant ។ តើថ្ងៃនេះខ្ញុំអាចជួយអ្វីដល់បងបានខ្លះ?</div>
                 </div>
                 <div class="flex gap-2">
                     <input type="text" id="chatInput" placeholder="សរសេរសំណួររបស់អ្នកទីនេះ..." class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -92,57 +189,45 @@
                 </div>
             </div>
 
-            <!-- ផ្ទាំងទី ៣៖ AI Quiz -->
+            <!-- 8. AI Quiz -->
             <div id="tab-quiz" class="tool-content space-y-6 hidden">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-1">🎯 AI Quiz Generator</h2>
                     <p class="text-gray-500 text-sm">បង្កើតសំណួរស្វែងយល់ចំណេះដឹងទូទៅ ឬតាមប្រធានបទ</p>
                 </div>
                 <div id="quizBox" class="space-y-4">
-                    <button onclick="startQuiz()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg text-base">
-                        ចាប់ផ្ដើមលេង Quiz ឥឡូវនេះ
-                    </button>
+                    <button onclick="startQuiz()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg text-base">ចាប់ផ្ដើមលេង Quiz ឥឡូវនេះ</button>
                 </div>
             </div>
 
-            <!-- ផ្ទាំងទី ៤៖ AI Exam -->
+            <!-- 9. AI Exam -->
             <div id="tab-exam" class="tool-content space-y-6 hidden">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-1">📚 AI Exam Simulator</h2>
                     <p class="text-gray-500 text-sm">ប្រព័ន្ធត្រៀមប្រលង និងសាកល្បងសមត្ថភាព</p>
                 </div>
                 <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">ជ្រើសរើសមុខវិជ្ជាប្រលង</label>
-                        <select id="examSubject" class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm">
-                            <option value="math">គណិតវិទ្យា (Mathematics)</option>
-                            <option value="general">ចំណេះដឹងទូទៅ (General Knowledge)</option>
-                            <option value="it">បច្ចេកវិទ្យា (IT & Coding)</option>
-                        </select>
-                    </div>
-                    <button onclick="generateExam()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg text-base">
-                        បង្កើតវិញ្ញាសាប្រលង AI
-                    </button>
+                    <select id="examSubject" class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm">
+                        <option value="math">គណិតវិទ្យា (Mathematics)</option>
+                        <option value="general">ចំណេះដឹងទូទៅ (General Knowledge)</option>
+                        <option value="it">បច្ចេកវិទ្យា (IT & Coding)</option>
+                    </select>
+                    <button onclick="generateExam()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg">បង្កើតវិញ្ញាសាប្រលង AI</button>
                 </div>
-                <div id="examResult" class="mt-4 hidden p-4 bg-gray-50 rounded-2xl border border-gray-200 text-sm"></div>
+                <div id="examResult" class="mt-4 hidden p-4 bg-gray-50 rounded-2xl border text-sm"></div>
             </div>
 
-            <!-- ផ្ទាំងទី ៥៖ AI Math Solver -->
+            <!-- 10. AI Math -->
             <div id="tab-math" class="tool-content space-y-6 hidden">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-1">📐 AI Math Solver</h2>
                     <p class="text-gray-500 text-sm">ជួយដោះស្រាយលំហាត់គណិតវិទ្យា និងបង្ហាញដំណាក់កាលគណនា</p>
                 </div>
                 <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">បញ្ចូលកន្សោម ឬសមីការគណិតវិទ្យា</label>
-                        <input type="text" id="mathInput" placeholder="ឧទាហរណ៍៖ 5x + 10 = 25 ឬ 12 * 4 + 5..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
-                    </div>
-                    <button onclick="solveMath()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg text-base">
-                        ដោះស្រាយលំហាត់ (Solve)
-                    </button>
+                    <input type="text" id="mathInput" placeholder="ឧទាហរណ៍៖ 5x + 10 = 25 ឬ 12 * 4 + 5..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl text-sm">
+                    <button onclick="solveMath()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg">ដោះស្រាយលំហាត់ (Solve)</button>
                 </div>
-                <div id="mathResult" class="mt-4 hidden p-4 bg-gray-50 rounded-2xl border border-gray-200 text-sm font-mono"></div>
+                <div id="mathResult" class="mt-4 hidden p-4 bg-gray-50 rounded-2xl border text-sm font-mono"></div>
             </div>
 
         </main>
@@ -186,6 +271,11 @@
             
             const buttons = {
                 'recap': {color: 'bg-purple-600'},
+                'tts': {color: 'bg-blue-600'},
+                'fonts': {color: 'bg-indigo-600'},
+                'qr': {color: 'bg-green-600'},
+                'hook': {color: 'bg-amber-600'},
+                'imglink': {color: 'bg-teal-600'},
                 'aichat': {color: 'bg-indigo-600'},
                 'quiz': {color: 'bg-emerald-600'},
                 'exam': {color: 'bg-blue-600'},
@@ -194,75 +284,58 @@
 
             for (let key in buttons) {
                 const btn = document.getElementById('btn-' + key);
-                btn.className = "py-3 px-3 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1";
+                if(btn) btn.className = "py-3 px-2 rounded-2xl text-xs font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white flex flex-col items-center gap-1";
             }
 
             document.getElementById('tab-' + tabName).classList.remove('hidden');
             const activeBtn = document.getElementById('btn-' + tabName);
-            activeBtn.className = `py-3 px-3 rounded-2xl text-xs md:text-sm font-semibold transition-all text-white shadow-lg ${buttons[tabName].color} flex flex-col items-center gap-1 scale-105`;
+            if(activeBtn) activeBtn.className = `py-3 px-2 rounded-2xl text-xs font-semibold transition-all text-white shadow-lg ${buttons[tabName].color} flex flex-col items-center gap-1 scale-105`;
         }
 
-        // មុខងារ AI Chat (Gemini Style)
         function sendChatMessage() {
             const input = document.getElementById('chatInput');
             const container = document.getElementById('chatContainer');
             const text = input.value.trim();
             if(!text) return;
-
-            // User Message
             container.innerHTML += `<div class="bg-indigo-600 text-white p-3 rounded-2xl max-w-[80%] text-sm self-end">${text}</div>`;
             input.value = '';
             container.scrollTop = container.scrollHeight;
-
-            // Simulated AI Response (Gemini style)
             setTimeout(() => {
-                let aiReply = "សួស្ដី! ខ្ញុំបានទទួលសំណួររបស់អ្នកហើយ៖ \"" + text + "\" ។ នេះជាចម្លើយគំរូពីប្រព័ន្ធ AI Assistant!";
-                if(text.includes("ឈ្មោះ")) aiReply = "ខ្ញុំជា AI Assistant ជំនួយការផ្ទាល់របស់អ្នកដែលបង្កើតឡើងដោយ C Kh media ។";
-                container.innerHTML += `<div class="bg-indigo-100 text-indigo-900 p-3 rounded-2xl max-w-[80%] text-sm self-start">${aiReply}</div>`;
+                container.innerHTML += `<div class="bg-indigo-100 text-indigo-900 p-3 rounded-2xl max-w-[80%] text-sm self-start">សួស្ដី! ខ្ញុំបានទទួលសំណួររបស់អ្នកហើយ៖ "${text}" ។ នេះជាចម្លើយគំរូពី AI Assistant!</div>`;
                 container.scrollTop = container.scrollHeight;
             }, 800);
         }
 
-        // មុខងារ AI Quiz
         function startQuiz() {
-            const box = document.getElementById('quizBox');
-            box.innerHTML = `
+            document.getElementById('quizBox').innerHTML = `
                 <div class="p-5 bg-emerald-50 rounded-2xl border border-emerald-200 space-y-3">
                     <p class="font-bold text-emerald-900">សំណួរទី ១៖ តើប្រព័ន្ធប្រតិបត្តិការណាមួយត្រូវបានប្រើប្រាស់ច្រើនជាងគេនៅលើទូរសព្ទដៃ?</p>
                     <div class="space-y-2 text-sm">
-                        <label class="block p-3 bg-white rounded-xl border border-emerald-100 cursor-pointer hover:bg-emerald-100"><input type="radio" name="q1" value="a"> ក. iOS</label>
-                        <label class="block p-3 bg-white rounded-xl border border-emerald-100 cursor-pointer hover:bg-emerald-100"><input type="radio" name="q1" value="b"> ខ. Android</label>
-                        <label class="block p-3 bg-white rounded-xl border border-emerald-100 cursor-pointer hover:bg-emerald-100"><input type="radio" name="q1" value="c"> គ. Windows Phone</label>
+                        <label class="block p-3 bg-white rounded-xl border"><input type="radio" name="q1" value="a"> ក. iOS</label>
+                        <label class="block p-3 bg-white rounded-xl border"><input type="radio" name="q1" value="b"> ខ. Android</label>
                     </div>
-                    <button onclick="alert('ត្រឹមត្រូវ! ចម្លើយគឺ ខ. Android')" class="bg-emerald-600 text-white px-5 py-2 rounded-xl text-xs font-semibold">ផ្ទៀងផ្ទាត់ចម្លើយ</button>
+                    <button onclick="alert('ត្រឹមត្រូវ! ចម្លើយគឺ ខ. Android')" class="bg-emerald-600 text-white px-5 py-2 rounded-xl text-xs font-semibold">ផ្ទៀងផ្ទាត់</button>
                 </div>
             `;
         }
 
-        // មុខងារ AI Exam
         function generateExam() {
             const sub = document.getElementById('examSubject').value;
             const res = document.getElementById('examResult');
             res.classList.remove('hidden');
-            res.innerHTML = `
-                <p class="font-bold text-blue-900 mb-2">📋 វិញ្ញាសាប្រលងស្វ័យប្រវត្តិ (${sub.toUpperCase()}):</p>
-                <p class="text-gray-700 mb-2">១. จงอธิบายหลักการทำงานพื้นฐาน និងសេចក្ដីសន្និដ្ឋាននៃវិញ្ញាសានេះ...</p>
-                <p class="text-gray-500 text-xs">ពេលវេលាកំណត់៖ 45 នាទី | ពិន្ទុពេញ៖ 100 ពិន្ទុ</p>
-            `;
+            res.innerHTML = `<p class="font-bold text-blue-900 mb-2">📋 វិញ្ញាសាប្រលង (${sub.toUpperCase()}):</p><p class="text-gray-700">១. จงอธิบายหลักการทำงานพื้นฐาน និងសេចក្ដីសន្និដ្ឋាន...</p>`;
         }
 
-        // មុខងារ AI Math Solver
         function solveMath() {
             const expr = document.getElementById('mathInput').value.trim();
             const res = document.getElementById('mathResult');
             if(!expr) { alert('សូមបញ្ចូលកន្សោមគណិតវិទ្យា!'); return; }
             res.classList.remove('hidden');
-            
             try {
-                let ans = eval(expr); // For basic expressions
-                res.innerHTML = `<span class="text-rose-700 font-bold">ដំណោះស្រាយ៖</span><br>• លទ្ធផលស្មើនឹង៖ <b>${ans}</b><br><span class="text-xs text-gray-500">គណនាដោយ AI Math Solver ស្វ័យប្រវត្តិ។</span>`;
+                let ans = eval(expr);
+                res.innerHTML = `<span class="text-rose-700 font-bold">ដំណោះស្រាយ៖</span><br>• លទ្ធផលស្មើនឹង៖ <b>${ans}</b>`;
             } catch(e) {
-                res.innerHTML = `<span class="text-rose-700 font-bold">លទ្ធផល៖</span> កន្សោមសមីការមិនត្រឹមត្រូវ សូមព្យាយាមម្ដងទៀត។`;
+                res.innerHTML = `<span class="text-rose-700 font-bold">លទ្ធផល៖</span> កន្សោមសមីការមិនត្រឹមត្រូវ។`;
             }
         }
 
@@ -278,6 +351,63 @@
         function copyScript() {
             navigator.clipboard.writeText(document.getElementById('outputScript').innerText);
             alert('បានចម្លងរួចរាល់!');
+        }
+        function speakCustomText() {
+            const text = document.getElementById('ttsText').value;
+            if(!text) { alert('សូមបញ្ចូលអត្ថបទ!'); return; }
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'km-KH';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+        function stopSpeech() { if ('speechSynthesis' in window) { window.speechSynthesis.cancel(); } }
+        function convertFonts() {
+            const val = document.getElementById('normalText').value;
+            if(!val) { document.getElementById('font1').innerText = "ស្ទីលទី១ (Bold Style)"; document.getElementById('font2').innerText = "ស្ទីលទី២ (Spaced Style)"; return; }
+            document.getElementById('font1').innerText = toBoldStyle(val);
+            document.getElementById('font2').innerText = toSpacedStyle(val);
+        }
+        function toBoldStyle(str) {
+            const map = { a: '𝗮', b: '𝗯', c: '𝗰', d: '𝗱', e: '𝗲', f: '𝗳', g: '𝗴', h: '𝗵', i: '𝗶', j: '𝗷', k: '𝗸', l: '𝗹', m: '𝗺', n: '𝗻', o: '𝗼', p: '𝗽', q: '𝗾', r: '𝗿', s: '𝘀', t: '𝘁', u: '𝘂', v: '𝘃', w: '𝘄', x: '𝘅', y: '𝘆', z: '𝘇', A: '𝗔', B: '𝗕', C: '𝗖', D: '𝗗', E: '𝗘', F: '𝗙', G: '𝗚', H: '𝗛', I: '𝗜', J: '𝗝', K: '𝗞', L: '𝗟', M: '𝗠', N: '𝗡', O: '𝗢', P: '𝗣', Q: '𝗤', R: '𝗥', S: '𝗦', T: '𝗧', U: '𝗨', V: '𝗩', W: '𝗪', X: '𝗫', Y: '𝗬', Z: '𝗭' };
+            return str.split('').map(char => map[char] || char).join('');
+        }
+        function toSpacedStyle(str) { return str.split('').join(' ✨ '); }
+        function copyFont(id) { navigator.clipboard.writeText(document.getElementById(id).innerText); alert('បានចម្លង!'); }
+        function generateQRCode() {
+            const url = document.getElementById('qrInputUrl').value;
+            if(!url) { alert('សូមបញ្ចូល Link!'); return; }
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(url)}`;
+            document.getElementById('qrImage').src = qrApiUrl;
+            document.getElementById('downloadQrBtn').href = qrApiUrl;
+            document.getElementById('qrResultSection').classList.remove('hidden');
+        }
+        function generateHooks() {
+            const topic = document.getElementById('hookInput').value;
+            if(!topic) { alert('សូមបញ្ចូលចំណងជើង!'); return; }
+            document.getElementById('hook1').innerText = `🔥 មិនគួរឱ្យជឿ! រឿង "${topic}" គឺមានអុបទិកបែបនេះ...`;
+            document.getElementById('hook2').innerText = `😱 ឈុតឆាកលាក់បាំងក្នុងរឿង "${topic}" ដែលអ្នកមិនធ្លាប់ដឹង!`;
+            document.getElementById('hook3').innerText = `⚡ មើលចប់ដឹងតែស្រឡាំងកាំង! ការពិតនៃរឿង "${topic}"`;
+            document.getElementById('hookResultSection').classList.remove('hidden');
+        }
+        function copyHook(id) { navigator.clipboard.writeText(document.getElementById(id).innerText); alert('បានចម្លង!'); }
+        function convertImageToLink() {
+            const fileInput = document.getElementById('imageInput');
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('generatedLinkOutput').value = e.target.result;
+                    document.getElementById('imgLinkResultSection').classList.remove('hidden');
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else { alert('សូមជ្រើសរើសរូបភាព!'); }
+        }
+        function copyGeneratedLink() {
+            const linkInput = document.getElementById('generatedLinkOutput');
+            linkInput.select();
+            document.execCommand('copy');
+            alert('បានចម្លង Link រូបភាព!');
         }
     </script>
 
