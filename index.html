@@ -16,25 +16,32 @@
     <div class="max-w-2xl mx-auto w-full">
         
         <!-- Header & Menu Switcher -->
-        <div class="text-center mb-8">
+        <div class="text-center mb-6">
             <h1 class="text-3xl font-bold tracking-tight mb-2">🎬 Creator Hub Tools</h1>
-            <p class="text-gray-400 text-sm mb-4">ជ្រើសរើស Tool ដែលអ្នកចង់ប្រើប្រាស់ខាងក្រោម</p>
+            <p class="text-gray-400 text-sm mb-3">ជ្រើសរើស Tool ដែលអ្នកចង់ប្រើប្រាស់ខាងក្រោម</p>
             
             <!-- ចំនួនអ្នកប្រើប្រាស់ -->
-            <div class="inline-flex items-center gap-2 bg-gray-800/60 border border-gray-700 px-4 py-1.5 rounded-full text-xs text-gray-300 mb-6 shadow-inner">
+            <div class="inline-flex items-center gap-2 bg-gray-800/60 border border-gray-700 px-4 py-1.5 rounded-full text-xs text-gray-300 mb-5 shadow-inner">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                 <span>អ្នកប្រើប្រាស់សរុប៖ <strong id="visitorCount" class="text-white">១,២៤៨</strong> នាក់</span>
             </div>
             
-            <div class="flex justify-center gap-2 bg-gray-800/80 p-1.5 rounded-2xl backdrop-blur-md border border-gray-700">
-                <button onclick="switchTab('recap')" id="btn-recap" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all bg-purple-600 text-white shadow-lg">
+            <!-- Menu Tabs -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-2 bg-gray-800/80 p-1.5 rounded-2xl backdrop-blur-md border border-gray-700">
+                <button onclick="switchTab('recap')" id="btn-recap" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all bg-purple-600 text-white shadow-lg">
                     📝 សម្រាយរឿង
                 </button>
-                <button onclick="switchTab('tts')" id="btn-tts" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-gray-400 hover:text-white">
+                <button onclick="switchTab('tts')" id="btn-tts" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white">
                     🔊 Text to Voice
                 </button>
-                <button onclick="switchTab('fonts')" id="btn-fonts" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-gray-400 hover:text-white">
+                <button onclick="switchTab('fonts')" id="btn-fonts" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white">
                     🔤 Text to Font
+                </button>
+                <button onclick="switchTab('qr')" id="btn-qr" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white">
+                    📷 QR Code
+                </button>
+                <button onclick="switchTab('hook')" id="btn-hook" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white">
+                    🔥 Hook Titles
                 </button>
             </div>
         </div>
@@ -112,6 +119,67 @@
             </div>
         </div>
 
+        <!-- ផ្ទាំងទី ៤៖ Tool QR Code Generator -->
+        <div id="tab-qr" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
+            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធបង្កើត QR Code សម្រាប់វីដេអូ</h2>
+            <p class="text-gray-500 text-sm mb-6">បម្លែង Link វីដេអូ ឬ Page ឱ្យទៅជារូបភាព QR Code</p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">បញ្ចូល Link វីដេអូ ឬ Page</label>
+                    <input type="text" id="qrInputUrl" placeholder="https://facebook.com/..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+                </div>
+                <button onclick="generateQRCode()" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-green-500/30">
+                    បង្កើត QR Code ឥឡូវនេះ
+                </button>
+            </div>
+
+            <div id="qrResultSection" class="mt-6 text-center hidden">
+                <label class="block text-sm font-medium text-gray-700 mb-3">លទ្ធផល QR Code របស់អ្នក៖</label>
+                <div class="inline-block p-3 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
+                    <img id="qrImage" src="" alt="QR Code" class="w-48 h-48 mx-auto rounded-lg">
+                </div>
+                <div class="mt-4">
+                    <a id="downloadQrBtn" href="" download="qrcode.png" target="_blank" class="inline-block bg-gray-800 hover:bg-gray-900 text-white text-xs px-5 py-2.5 rounded-xl transition">
+                        ទាញយករូបភាព QR Code (Download)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ផ្ទាំងទី ៥៖ Tool Hook Titles Generator -->
+        <div id="tab-hook" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
+            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធបង្កើតចំណងជើងទាក់ទាញ (Hook Titles)</h2>
+            <p class="text-gray-500 text-sm mb-6">បង្កើតប្រយោគចាប់អារម្មណ៍ខ្លាំងសម្រាប់ដាក់លើ Thumbnail ឬដើមវីដេអូ</p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">បញ្ចូលចំណងជើងរឿង ឬប្រធានបទ</label>
+                    <input type="text" id="hookInput" placeholder="ឧទាហរណ៍៖ រឿងខ្មោចក្នុងព្រៃ, ជីវិតមហាសេដ្ឋី..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                </div>
+                <button onclick="generateHooks()" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-amber-500/30">
+                    បង្កើតចំណងជើងទាក់ទាញ
+                </button>
+            </div>
+
+            <div id="hookResultSection" class="mt-6 hidden space-y-3">
+                <label class="block text-sm font-medium text-gray-700">លទ្ធផលស្ទីលចំណងជើង៖</label>
+                
+                <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
+                    <span id="hook1" class="text-gray-700 font-medium mr-2"></span>
+                    <button onclick="copyHook('hook1')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
+                    <span id="hook2" class="text-gray-700 font-medium mr-2"></span>
+                    <button onclick="copyHook('hook2')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
+                    <span id="hook3" class="text-gray-700 font-medium mr-2"></span>
+                    <button onclick="copyHook('hook3')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- ផ្នែក Footer បង្ហាញឈ្មោះអ្នកបង្កើត -->
@@ -135,13 +203,19 @@
         function switchTab(tabName) {
             document.querySelectorAll('.tool-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('[id^="btn-"]').forEach(el => {
-                el.className = "flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-gray-400 hover:text-white";
+                el.className = "py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white";
             });
 
             document.getElementById('tab-' + tabName).classList.remove('hidden');
             const activeBtn = document.getElementById('btn-' + tabName);
-            activeBtn.className = "flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-white shadow-lg " + 
-                (tabName === 'recap' ? 'bg-purple-600' : tabName === 'tts' ? 'bg-blue-600' : 'bg-indigo-600');
+            
+            let activeColor = 'bg-purple-600';
+            if(tabName === 'tts') activeColor = 'bg-blue-600';
+            else if(tabName === 'fonts') activeColor = 'bg-indigo-600';
+            else if(tabName === 'qr') activeColor = 'bg-green-600';
+            else if(tabName === 'hook') activeColor = 'bg-amber-600';
+
+            activeBtn.className = `py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-white shadow-lg ${activeColor}`;
         }
 
         function generateRecapScript() {
@@ -200,6 +274,32 @@
         function copyFont(id) {
             navigator.clipboard.writeText(document.getElementById(id).innerText);
             alert('បានចម្លងហ្វុន្តែរួចរាល់!');
+        }
+
+        function generateQRCode() {
+            const url = document.getElementById('qrInputUrl').value;
+            if(!url) { alert('សូមបញ្ចូល Link ជាមុនសិន!'); return; }
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(url)}`;
+            document.getElementById('qrImage').src = qrApiUrl;
+            document.getElementById('downloadQrBtn').href = qrApiUrl;
+            document.getElementById('qrResultSection').classList.remove('hidden');
+        }
+
+        // មុខងារបង្កើត Hook Titles
+        function generateHooks() {
+            const topic = document.getElementById('hookInput').value;
+            if(!topic) { alert('សូមបញ្ចូលចំណងជើងរឿង ឬប្រធានបទជាមុនសិន!'); return; }
+
+            document.getElementById('hook1').innerText = `🔥 មិនគួរឱ្យជឿ! រឿង "${topic}" គឺមានអុបទិកបែបនេះ...`;
+            document.getElementById('hook2').innerText = `😱 ឈុតឆាកលាក់បាំងក្នុងរឿង "${topic}" ដែលអ្នកមិនធ្លាប់ដឹង!`;
+            document.getElementById('hook3').innerText = `⚡ មើលចប់ដឹងតែស្រឡាំងកាំង! ការពិតនៃរឿង "${topic}"`;
+            
+            document.getElementById('hookResultSection').classList.remove('hidden');
+        }
+
+        function copyHook(id) {
+            navigator.clipboard.writeText(document.getElementById(id).innerText);
+            alert('បានចម្លងចំណងជើងទាក់ទាញរួចរាល់!');
         }
     </script>
 
