@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creator Multi-Tools</title>
+    <title>Creator Hub Tools</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;700&display=swap" rel="stylesheet">
@@ -11,181 +11,236 @@
         body { font-family: 'Kantumruy Pro', sans-serif; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 to-indigo-950 min-h-screen text-gray-100 p-4 py-8 flex flex-col justify-between">
+<body class="bg-gradient-to-br from-gray-950 via-indigo-950 to-gray-900 min-h-screen text-gray-100 p-4 md:p-8 flex flex-col justify-between">
 
-    <div class="max-w-2xl mx-auto w-full">
+    <div class="max-w-4xl mx-auto w-full">
         
-        <!-- Header & Menu Switcher -->
-        <div class="text-center mb-6">
-            <h1 class="text-3xl font-bold tracking-tight mb-2">🎬 Creator Hub Tools</h1>
-            <p class="text-gray-400 text-sm mb-3">ជ្រើសរើស Tool ដែលអ្នកចង់ប្រើប្រាស់ខាងក្រោម</p>
+        <!-- Header & Visitor Counter -->
+        <header class="text-center mb-10">
+            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider border border-indigo-500/20">Professional Toolkit</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 mb-2 text-white">🎬 Creator Hub Tools</h1>
+            <p class="text-gray-400 text-sm md:text-base mb-4">ប្រព័ន្ធជំនួយស្មារតី និងឧបករណ៍បច្ចេកវិទ្យាសម្រាប់ Content Creators</p>
             
-            <!-- ចំនួនអ្នកប្រើប្រាស់ -->
-            <div class="inline-flex items-center gap-2 bg-gray-800/60 border border-gray-700 px-4 py-1.5 rounded-full text-xs text-gray-300 mb-5 shadow-inner">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span>អ្នកប្រើប្រាស់សរុប៖ <strong id="visitorCount" class="text-white">១,២៤៨</strong> នាក់</span>
+            <div class="inline-flex items-center gap-2.5 bg-gray-800/90 border border-gray-700 px-5 py-2 rounded-full text-xs md:text-sm text-gray-300 shadow-xl backdrop-blur-md">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                <span>អ្នកប្រើប្រាស់សរុប៖ <strong id="visitorCount" class="text-white text-base">១,២៤៨</strong> នាក់</span>
             </div>
-            
-            <!-- Menu Tabs -->
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-2 bg-gray-800/80 p-1.5 rounded-2xl backdrop-blur-md border border-gray-700">
-                <button onclick="switchTab('recap')" id="btn-recap" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all bg-purple-600 text-white shadow-lg">
-                    📝 សម្រាយរឿង
-                </button>
-                <button onclick="switchTab('tts')" id="btn-tts" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white">
-                    🔊 Text to Voice
-                </button>
-                <button onclick="switchTab('fonts')" id="btn-fonts" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white">
-                    🔤 Text to Font
-                </button>
-                <button onclick="switchTab('qr')" id="btn-qr" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white">
-                    📷 QR Code
-                </button>
-                <button onclick="switchTab('hook')" id="btn-hook" class="py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white">
-                    🔥 Hook Titles
-                </button>
-            </div>
-        </div>
+        </header>
 
-        <!-- ផ្ទាំងទី ១៖ Tool សម្រាយរឿង -->
-        <div id="tab-recap" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8">
-            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធសរសេរ Script សម្រាយរឿង</h2>
-            <p class="text-gray-500 text-sm mb-6">បង្កើតអត្ថបទរៀបរាប់សាច់រឿងសម្រាប់ធ្វើវីដេអូ</p>
+        <!-- Navigation Tabs (Buttons) -->
+        <nav class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 mb-8">
+            <button onclick="switchTab('recap')" id="btn-recap" class="py-3 px-4 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-purple-600 text-white shadow-lg shadow-purple-600/30 flex flex-col items-center gap-1">
+                <span class="text-lg">📝</span> សម្រាយរឿង
+            </button>
+            <button onclick="switchTab('tts')" id="btn-tts" class="py-3 px-4 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-700 flex flex-col items-center gap-1">
+                <span class="text-lg">🔊</span> Text to Voice
+            </button>
+            <button onclick="switchTab('fonts')" id="btn-fonts" class="py-3 px-4 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-700 flex flex-col items-center gap-1">
+                <span class="text-lg">🔤</span> Text to Font
+            </button>
+            <button onclick="switchTab('qr')" id="btn-qr" class="py-3 px-4 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-700 flex flex-col items-center gap-1">
+                <span class="text-lg">📷</span> QR Code
+            </button>
+            <button onclick="switchTab('hook')" id="btn-hook" class="py-3 px-4 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-700 flex flex-col items-center gap-1">
+                <span class="text-lg">🔥</span> Hook Titles
+            </button>
+            <button onclick="switchTab('imglink')" id="btn-imglink" class="py-3 px-4 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-700 flex flex-col items-center gap-1">
+                <span class="text-lg">🖼️</span> Pic to Link
+            </button>
+        </nav>
 
-            <div class="space-y-4">
+        <!-- Main Content Wrapper (Tools Cards) -->
+        <main class="bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-10 border border-gray-100">
+
+            <!-- ផ្ទាំងទី ១៖ Tool សម្រាយរឿង -->
+            <div id="tab-recap" class="tool-content space-y-6">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">ចំណងជើងរឿង</label>
-                    <input type="text" id="movieTitle" placeholder="ឧទាហរណ៍៖ Avatar 2..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធសរសេរ Script សម្រាយរឿង</h2>
+                    <p class="text-gray-500 text-sm">បង្កើតអត្ថបទរៀបរាប់សាច់រឿងសម្រាប់ធ្វើវីដេអូទាក់ទាញ</p>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">សាច់រឿងសង្ខេប</label>
-                    <textarea id="moviePlot" rows="4" placeholder="រៀបរាប់ពីដំណើររឿង..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"></textarea>
-                </div>
-                <button onclick="generateRecapScript()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-purple-500/30">
-                    បង្កើត Script ឥឡូវនេះ
-                </button>
-            </div>
 
-            <div id="resultSection" class="mt-6 hidden">
-                <label class="block text-sm font-medium text-gray-700 mb-1">លទ្ធផល Script៖</label>
-                <div id="outputScript" class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-sm text-gray-700 whitespace-pre-line max-h-48 overflow-y-auto"></div>
-                <button onclick="copyScript()" class="mt-3 bg-gray-800 hover:bg-gray-900 text-white text-xs px-4 py-2.5 rounded-lg transition">
-                    ចម្លងអត្ថបទ (Copy Script)
-                </button>
-            </div>
-        </div>
-
-        <!-- ផ្ទាំងទី ២៖ Tool Text to Voice -->
-        <div id="tab-tts" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
-            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធអានអត្ថបទជាសំឡេង (Text to Voice)</h2>
-            <p class="text-gray-500 text-sm mb-6">យកអត្ថបទមកដាក់បញ្ចូលដើម្បីឱ្យ Browser អានជាសំឡេង</p>
-
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">អត្ថបទសម្រាប់អាន</label>
-                    <textarea id="ttsText" rows="5" placeholder="វាយអត្ថបទរបស់អ្នកទីនេះ..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"></textarea>
-                </div>
-                <div class="flex gap-3">
-                    <button onclick="speakCustomText()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-blue-500/30">
-                        🔊 ចាប់ផ្ដើមអាន
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">ចំណងជើងរឿង</label>
+                        <input type="text" id="movieTitle" placeholder="ឧទាហរណ៍៖ Avatar 2..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">សាច់រឿងសង្ខេប</label>
+                        <textarea id="moviePlot" rows="5" placeholder="រៀបរាប់ពីដំណើររឿងផ្តើម និងភាគបញ្ចប់..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"></textarea>
+                    </div>
+                    <button onclick="generateRecapScript()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-purple-600/30 text-base">
+                        បង្កើត Script ឥឡូវនេះ
                     </button>
-                    <button onclick="stopSpeech()" class="bg-red-500 hover:bg-red-600 text-white font-medium px-5 py-3 rounded-xl transition">
-                        ឈប់អាន
+                </div>
+
+                <div id="resultSection" class="mt-6 hidden space-y-3">
+                    <label class="block text-sm font-semibold text-gray-700">លទ្ធផល Script សម្រាប់យកទៅអាន៖</label>
+                    <div id="outputScript" class="bg-gray-50 p-5 rounded-2xl border border-gray-200 text-sm text-gray-700 whitespace-pre-line max-h-60 overflow-y-auto leading-relaxed"></div>
+                    <button onclick="copyScript()" class="bg-gray-900 hover:bg-black text-white text-xs font-medium px-5 py-3 rounded-xl transition shadow">
+                        ចម្លងអត្ថបទ (Copy Script)
                     </button>
                 </div>
             </div>
-        </div>
 
-        <!-- ផ្ទាំងទី ៣៖ Tool Text to Font -->
-        <div id="tab-fonts" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
-            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធបម្លែងអត្ថបទជាហ្វុន្តែស្អាតៗ</h2>
-            <p class="text-gray-500 text-sm mb-6">បម្លែងអត្ថបទអង់គ្លេសទៅជាស្ទីលពិសេសសម្រាប់ផុសលើ TikTok</p>
-
-            <div class="space-y-4">
+            <!-- ផ្ទាំងទី ២៖ Tool Text to Voice -->
+            <div id="tab-tts" class="tool-content space-y-6 hidden">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">អត្ថបទដើម (ជាអក្សរអង់គ្លេស)</label>
-                    <input type="text" id="normalText" oninput="convertFonts()" placeholder="Type English text here..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធអានអត្ថបទជាសំឡេង (Text to Voice)</h2>
+                    <p class="text-gray-500 text-sm">យកអត្ថបទមកដាក់បញ្ចូលដើម្បីឱ្យ Browser អានចេញមកជាសំឡេង</p>
                 </div>
 
-                <div class="space-y-3">
-                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
-                        <span id="font1" class="font-mono text-gray-700 break-all mr-2">ស្ទីលទី១ (Bold Style)</span>
-                        <button onclick="copyFont('font1')" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">អត្ថបទសម្រាប់អាន</label>
+                        <textarea id="ttsText" rows="6" placeholder="វាយអត្ថបទរបស់អ្នកទីនេះ..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"></textarea>
                     </div>
-                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
-                        <span id="font2" class="font-mono text-gray-700 break-all mr-2">ស្ទីលទី២ (Spaced Style)</span>
-                        <button onclick="copyFont('font2')" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+                    <div class="flex gap-3">
+                        <button onclick="speakCustomText()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-blue-600/30 text-base">
+                            🔊 ចាប់ផ្ដើមអាន
+                        </button>
+                        <button onclick="stopSpeech()" class="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-4 rounded-2xl transition shadow">
+                            ឈប់អាន
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ផ្ទាំងទី ៤៖ Tool QR Code Generator -->
-        <div id="tab-qr" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
-            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធបង្កើត QR Code សម្រាប់វីដេអូ</h2>
-            <p class="text-gray-500 text-sm mb-6">បម្លែង Link វីដេអូ ឬ Page ឱ្យទៅជារូបភាព QR Code</p>
-
-            <div class="space-y-4">
+            <!-- ផ្ទាំងទី ៣៖ Tool Text to Font -->
+            <div id="tab-fonts" class="tool-content space-y-6 hidden">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">បញ្ចូល Link វីដេអូ ឬ Page</label>
-                    <input type="text" id="qrInputUrl" placeholder="https://facebook.com/..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធបម្លែងអត្ថបទជាហ្វុន្តែស្អាតៗ</h2>
+                    <p class="text-gray-500 text-sm">បម្លែងអត្ថបទអង់គ្លេសទៅជាស្ទីលពិសេសសម្រាប់ផុសលើ TikTok</p>
                 </div>
-                <button onclick="generateQRCode()" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-green-500/30">
-                    បង្កើត QR Code ឥឡូវនេះ
-                </button>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">អត្ថបទដើម (ជាអក្សរអង់គ្លេស)</label>
+                        <input type="text" id="normalText" oninput="convertFonts()" placeholder="Type English text here..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                    </div>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 flex justify-between items-center text-sm">
+                            <span id="font1" class="font-mono text-gray-800 font-semibold break-all mr-2 text-base">ស្ទីលទី១ (Bold Style)</span>
+                            <button onclick="copyFont('font1')" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl shrink-0 font-medium">Copy</button>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 flex justify-between items-center text-sm">
+                            <span id="font2" class="font-mono text-gray-800 font-semibold break-all mr-2 text-base">ស្ទីលទី២ (Spaced Style)</span>
+                            <button onclick="copyFont('font2')" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl shrink-0 font-medium">Copy</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div id="qrResultSection" class="mt-6 text-center hidden">
-                <label class="block text-sm font-medium text-gray-700 mb-3">លទ្ធផល QR Code របស់អ្នក៖</label>
-                <div class="inline-block p-3 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
-                    <img id="qrImage" src="" alt="QR Code" class="w-48 h-48 mx-auto rounded-lg">
-                </div>
-                <div class="mt-4">
-                    <a id="downloadQrBtn" href="" download="qrcode.png" target="_blank" class="inline-block bg-gray-800 hover:bg-gray-900 text-white text-xs px-5 py-2.5 rounded-xl transition">
-                        ទាញយករូបភាព QR Code (Download)
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- ផ្ទាំងទី ៥៖ Tool Hook Titles Generator -->
-        <div id="tab-hook" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
-            <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធបង្កើតចំណងជើងទាក់ទាញ (Hook Titles)</h2>
-            <p class="text-gray-500 text-sm mb-6">បង្កើតប្រយោគចាប់អារម្មណ៍ខ្លាំងសម្រាប់ដាក់លើ Thumbnail ឬដើមវីដេអូ</p>
-
-            <div class="space-y-4">
+            <!-- ផ្ទាំងទី ៤៖ Tool QR Code Generator -->
+            <div id="tab-qr" class="tool-content space-y-6 hidden">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">បញ្ចូលចំណងជើងរឿង ឬប្រធានបទ</label>
-                    <input type="text" id="hookInput" placeholder="ឧទាហរណ៍៖ រឿងខ្មោចក្នុងព្រៃ, ជីវិតមហាសេដ្ឋី..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធបង្កើត QR Code សម្រាប់វីដេអូ</h2>
+                    <p class="text-gray-500 text-sm">បម្លែង Link វីដេអូ ឬ Page ឱ្យទៅជារូបភាព QR Code ស្អាតៗ</p>
                 </div>
-                <button onclick="generateHooks()" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-amber-500/30">
-                    បង្កើតចំណងជើងទាក់ទាញ
-                </button>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">បញ្ចូល Link វីដេអូ ឬ Page</label>
+                        <input type="text" id="qrInputUrl" placeholder="https://facebook.com/..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+                    </div>
+                    <button onclick="generateQRCode()" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-green-600/30 text-base">
+                        បង្កើត QR Code ឥឡូវនេះ
+                    </button>
+                </div>
+
+                <div id="qrResultSection" class="mt-6 text-center hidden space-y-4">
+                    <label class="block text-sm font-semibold text-gray-700">លទ្ធផល QR Code របស់អ្នក៖</label>
+                    <div class="inline-block p-4 bg-gray-50 border border-gray-200 rounded-3xl shadow-inner">
+                        <img id="qrImage" src="" alt="QR Code" class="w-52 h-52 mx-auto rounded-xl">
+                    </div>
+                    <div>
+                        <a id="downloadQrBtn" href="" download="qrcode.png" target="_blank" class="inline-block bg-gray-900 hover:bg-black text-white text-xs font-medium px-6 py-3 rounded-xl transition shadow">
+                            ទាញយករូបភាព QR Code (Download)
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div id="hookResultSection" class="mt-6 hidden space-y-3">
-                <label class="block text-sm font-medium text-gray-700">លទ្ធផលស្ទីលចំណងជើង៖</label>
-                
-                <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
-                    <span id="hook1" class="text-gray-700 font-medium mr-2"></span>
-                    <button onclick="copyHook('hook1')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+            <!-- ផ្ទាំងទី ៥៖ Tool Hook Titles Generator -->
+            <div id="tab-hook" class="tool-content space-y-6 hidden">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធបង្កើតចំណងជើងទាក់ទាញ (Hook Titles)</h2>
+                    <p class="text-gray-500 text-sm">បង្កើតប្រយោគចាប់អារម្មណ៍ខ្លាំងសម្រាប់ដាក់លើ Thumbnail ឬដើមវីដេអូ</p>
                 </div>
-                <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
-                    <span id="hook2" class="text-gray-700 font-medium mr-2"></span>
-                    <button onclick="copyHook('hook2')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">បញ្ចូលចំណងជើងរឿង ឬប្រធានបទ</label>
+                        <input type="text" id="hookInput" placeholder="ឧទាហរណ៍៖ រឿងខ្មោចក្នុងព្រៃ, ជីវិតមហាសេដ្ឋី..." class="w-full px-4 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                    </div>
+                    <button onclick="generateHooks()" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-amber-600/30 text-base">
+                        បង្កើតចំណងជើងទាក់ទាញ
+                    </button>
                 </div>
-                <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
-                    <span id="hook3" class="text-gray-700 font-medium mr-2"></span>
-                    <button onclick="copyHook('hook3')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
+
+                <div id="hookResultSection" class="mt-6 hidden space-y-3">
+                    <label class="block text-sm font-semibold text-gray-700">លទ្ធផលស្ទីលចំណងជើង៖</label>
+                    
+                    <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 flex justify-between items-center text-sm">
+                        <span id="hook1" class="text-gray-800 font-semibold mr-2 text-base"></span>
+                        <button onclick="copyHook('hook1')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-xl shrink-0 font-medium">Copy</button>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 flex justify-between items-center text-sm">
+                        <span id="hook2" class="text-gray-800 font-semibold mr-2 text-base"></span>
+                        <button onclick="copyHook('hook2')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-xl shrink-0 font-medium">Copy</button>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 flex justify-between items-center text-sm">
+                        <span id="hook3" class="text-gray-800 font-semibold mr-2 text-base"></span>
+                        <button onclick="copyHook('hook3')" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-xl shrink-0 font-medium">Copy</button>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <!-- ផ្ទាំងទី ៦៖ Tool Picture to Link -->
+            <div id="tab-imglink" class="tool-content space-y-6 hidden">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ប្រព័ន្ធបម្លែងរូបភាពទៅជា Link (Picture to Link)</h2>
+                    <p class="text-gray-500 text-sm">ជ្រើសរើសរូបភាពដើម្បីបង្កើត Link សម្រាប់យកទៅប្រើប្រាស់ក្នុងប្រព័ន្ធ</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">ជ្រើសរើសរូបភាពពីទូរសព្ទ ឬកុំព្យូទ័រ</label>
+                        <input type="file" id="imageInput" accept="image/*" class="w-full px-4 py-3 border border-gray-300 rounded-2xl text-sm file:mr-4 file:py-2.5 file:px-5 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100">
+                    </div>
+                    <button onclick="convertImageToLink()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-4 rounded-2xl transition shadow-lg shadow-teal-600/30 text-base">
+                        បម្លែងជា Link ឥឡូវនេះ
+                    </button>
+                </div>
+
+                <div id="imgLinkResultSection" class="mt-6 hidden space-y-3">
+                    <label class="block text-sm font-semibold text-gray-700">លទ្ធផល Link រូបភាពរបស់អ្នក៖</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="generatedLinkOutput" readonly class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-xs text-gray-600 select-all font-mono">
+                        <button onclick="copyGeneratedLink()" class="text-xs bg-teal-600 hover:bg-teal-700 text-white px-5 py-3 rounded-2xl shrink-0 font-semibold">Copy Link</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
 
     </div>
 
-    <!-- ផ្នែក Footer បង្ហាញឈ្មោះអ្នកបង្កើត -->
-    <footer class="mt-12 text-center text-gray-500 text-xs pb-4">
-        <p>Created by: <span class="font-bold text-gray-300">SEAV LONG & SETH FT NA RAN</span></p>
-        <p class="mt-1">© C Kh media</p>
+    <!-- Footer: Admin Coffee & Credits -->
+    <footer class="mt-16 text-center text-gray-400 text-xs pb-6 space-y-6">
+        <!-- Buy Me a Coffee Box -->
+        <div class="bg-gray-900/90 border border-gray-800 p-6 rounded-3xl max-w-sm mx-auto shadow-2xl backdrop-blur-md">
+            <p class="font-bold text-amber-400 text-sm mb-3">☕ ប៉ាវកាហ្វេអេតមីន</p>
+            <div class="bg-white p-3 rounded-2xl inline-block shadow-inner mb-3">
+                <img src="https://cdn.phototourl.com/free/2026-08-24-f4aebfec-f815-44b5-8004-70eaf5d72bf3.jpg" alt="Admin QR Coffee" class="w-36 h-36 mx-auto rounded-xl object-cover">
+            </div>
+            <p class="text-xs text-gray-400">សូមអរគុណសម្រាប់ការគាំទ្រទឹកចិត្តអេតមីន!</p>
+        </div>
+
+        <div class="space-y-1">
+            <p class="text-sm">Created by: <span class="font-bold text-gray-200">SEAV LONG & SETH FT NA RAN</span></p>
+            <p class="text-xs text-gray-500">© C Kh media - All Rights Reserved</p>
+        </div>
     </footer>
 
     <script>
@@ -202,20 +257,26 @@
 
         function switchTab(tabName) {
             document.querySelectorAll('.tool-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('[id^="btn-"]').forEach(el => {
-                el.className = "py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-gray-400 hover:text-white";
-            });
+            
+            // Reset all buttons style
+            const buttons = {
+                'recap': {color: 'bg-purple-600', shadow: 'shadow-purple-600/30'},
+                'tts': {color: 'bg-blue-600', shadow: 'shadow-blue-600/30'},
+                'fonts': {color: 'bg-indigo-600', shadow: 'shadow-indigo-600/30'},
+                'qr': {color: 'bg-green-600', shadow: 'shadow-green-600/30'},
+                'hook': {color: 'bg-amber-600', shadow: 'shadow-amber-600/30'},
+                'imglink': {color: 'bg-teal-600', shadow: 'shadow-teal-600/30'}
+            };
 
+            for (let key in buttons) {
+                const btn = document.getElementById('btn-' + key);
+                btn.className = "py-3 px-4 rounded-2xl text-xs md:text-sm font-semibold transition-all bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-700 flex flex-col items-center gap-1";
+            }
+
+            // Show selected tab & active button style
             document.getElementById('tab-' + tabName).classList.remove('hidden');
             const activeBtn = document.getElementById('btn-' + tabName);
-            
-            let activeColor = 'bg-purple-600';
-            if(tabName === 'tts') activeColor = 'bg-blue-600';
-            else if(tabName === 'fonts') activeColor = 'bg-indigo-600';
-            else if(tabName === 'qr') activeColor = 'bg-green-600';
-            else if(tabName === 'hook') activeColor = 'bg-amber-600';
-
-            activeBtn.className = `py-2.5 px-3 rounded-xl text-xs font-medium transition-all text-white shadow-lg ${activeColor}`;
+            activeBtn.className = `py-3 px-4 rounded-2xl text-xs md:text-sm font-semibold transition-all text-white shadow-lg ${buttons[tabName].color} ${buttons[tabName].shadow} flex flex-col items-center gap-1 scale-105`;
         }
 
         function generateRecapScript() {
@@ -285,7 +346,6 @@
             document.getElementById('qrResultSection').classList.remove('hidden');
         }
 
-        // មុខងារបង្កើត Hook Titles
         function generateHooks() {
             const topic = document.getElementById('hookInput').value;
             if(!topic) { alert('សូមបញ្ចូលចំណងជើងរឿង ឬប្រធានបទជាមុនសិន!'); return; }
@@ -300,6 +360,28 @@
         function copyHook(id) {
             navigator.clipboard.writeText(document.getElementById(id).innerText);
             alert('បានចម្លងចំណងជើងទាក់ទាញរួចរាល់!');
+        }
+
+        function convertImageToLink() {
+            const fileInput = document.getElementById('imageInput');
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    document.getElementById('generatedLinkOutput').value = imageUrl;
+                    document.getElementById('imgLinkResultSection').classList.remove('hidden');
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('សូមជ្រើសរើសរូបភាពជាមុនសិន!');
+            }
+        }
+
+        function copyGeneratedLink() {
+            const linkInput = document.getElementById('generatedLinkOutput');
+            linkInput.select();
+            document.execCommand('copy');
+            alert('បានចម្លង Link រូបភាពរួចរាល់!');
         }
     </script>
 
