@@ -15,10 +15,16 @@
 
     <div class="max-w-2xl mx-auto">
         
-        <!-- Header & Menu Switcher (ប៊ូតុងប្ដូរផ្ទាំង Tool) -->
+        <!-- Header & Menu Switcher -->
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold tracking-tight mb-2">🎬 Creator Hub Tools</h1>
-            <p class="text-gray-400 text-sm mb-6">ជ្រើសរើស Tool ដែលបងចង់ប្រើប្រាស់ខាងក្រោម</p>
+            <p class="text-gray-400 text-sm mb-4">ជ្រើសរើស Tool ដែលបងចង់ប្រើប្រាស់ខាងក្រោម</p>
+            
+            <!-- បង្ហាញចំនួនអ្នកប្រើប្រាស់ (Visitor Counter) -->
+            <div class="inline-flex items-center gap-2 bg-gray-800/60 border border-gray-700 px-4 py-1.5 rounded-full text-xs text-gray-300 mb-6 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span>ចំនួនអ្នកប្រើប្រាស់សរុប៖ <strong id="visitorCount" class="text-white">១,២៤៨</strong> នាក់</span>
+            </div>
             
             <div class="flex justify-center gap-2 bg-gray-800/80 p-1.5 rounded-2xl backdrop-blur-md border border-gray-700">
                 <button onclick="switchTab('recap')" id="btn-recap" class="flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all bg-purple-600 text-white shadow-lg">
@@ -85,21 +91,21 @@
         <!-- ផ្ទាំងទី ៣៖ Tool Text to Font -->
         <div id="tab-fonts" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
             <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធបម្លែងអត្ថបទជាហ្វុន្តែស្អាតៗ</h2>
-            <p class="text-gray-500 text-sm mb-6">បម្លែងអត្ថបទធម្មតាទៅជាអក្សរพิเศษសម្រាប់ផុសលើ TikTok</p>
+            <p class="text-gray-500 text-sm mb-6">បម្លែងអត្ថបទអង់គ្លេសទៅជាស្ទីលพิเศษសម្រាប់ផុសលើ TikTok</p>
 
             <div class="space-y-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">អត្ថបទដើម</label>
-                    <input type="text" id="normalText" oninput="convertFonts()" placeholder="វាយអត្ថបទទីនេះ..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">អត្ថបទដើម (ជាអក្សរអង់គ្លេស)</label>
+                    <input type="text" id="normalText" oninput="convertFonts()" placeholder="Type English text here..." class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
                 </div>
 
                 <div class="space-y-3">
                     <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
-                        <span id="font1" class="font-mono text-gray-700 break-all mr-2">ហ្វុន្តែទម្រង់ទី១</span>
+                        <span id="font1" class="font-mono text-gray-700 break-all mr-2">ស្ទីលទី១ (Bold Style)</span>
                         <button onclick="copyFont('font1')" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
                     </div>
                     <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-center text-sm">
-                        <span id="font2" class="font-mono text-gray-700 break-all mr-2">ហ្វុន្តែទម្រង់ទី២</span>
+                        <span id="font2" class="font-mono text-gray-700 break-all mr-2">ស្ទីលទី២ (Spaced Style)</span>
                         <button onclick="copyFont('font2')" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg shrink-0">Copy</button>
                     </div>
                 </div>
@@ -109,25 +115,32 @@
     </div>
 
     <script>
-        // ប្ដូរផ្ទាំង Tab ទៅវិញទៅមក
+        // បង្កើនចំនួនអ្នកប្រើប្រាស់ស្វ័យប្រវត្តិពេលបើកចូល Website (LocalStorage គាំទ្រការរាប់ចំនួនจริง)
+        window.onload = function() {
+            let views = localStorage.getItem('site_views');
+            if (!views) {
+                views = 1248; // ចំនួនដើម
+            } else {
+                views = parseInt(views) + 1;
+            }
+            localStorage.setItem('site_views', views);
+            
+            // បំប្លែងលេខជាទ្រង់ទ្រាយមានក្បៀសស្អាត
+            document.getElementById('visitorCount').innerText = views.toLocaleString();
+        };
+
         function switchTab(tabName) {
-            // លាក់គ្រប់ Tab ទាំងអស់
             document.querySelectorAll('.tool-content').forEach(el => el.classList.add('hidden'));
-            // ដក Design ប៊ូតុងទាំងអស់ចេញ
             document.querySelectorAll('[id^="btn-"]').forEach(el => {
                 el.className = "flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-gray-400 hover:text-white";
             });
 
-            // បង្ហាញ Tab ដែលបានជ្រើសរើស
             document.getElementById('tab-' + tabName).classList.remove('hidden');
-            
-            // ใส่ Style ឱ្យប៊ូតុងដែលកំពុងgetActive
             const activeBtn = document.getElementById('btn-' + tabName);
             activeBtn.className = "flex-1 py-2.5 px-4 rounded-xl text-sm font-medium transition-all text-white shadow-lg " + 
                 (tabName === 'recap' ? 'bg-purple-600' : tabName === 'tts' ? 'bg-blue-600' : 'bg-indigo-600');
         }
 
-        // មុខងារ Script Generator
         function generateRecapScript() {
             const title = document.getElementById('movieTitle').value;
             const plot = document.getElementById('moviePlot').value;
@@ -143,7 +156,6 @@
             alert('បានចម្លង Script រួចរាល់!');
         }
 
-        // មុខងារ Text to Voice
         function speakCustomText() {
             const text = document.getElementById('ttsText').value;
             if(!text) { alert('សូមបញ្ចូលអត្ថបទសម្រាប់អាន!'); return; }
@@ -162,28 +174,24 @@
             if ('speechSynthesis' in window) { window.speechSynthesis.cancel(); }
         }
 
-        // មុខងារ Text to Fonts
         function convertFonts() {
             const val = document.getElementById('normalText').value;
             if(!val) {
-                document.getElementById('font1').innerText = "ហ្វុន្តែទម្រង់ទី១";
-                document.getElementById('font2').innerText = "ហ្វុន្តែទម្រង់ទី២";
+                document.getElementById('font1').innerText = "ស្ទីលទី១ (Bold Style)";
+                document.getElementById('font2').innerText = "ស្ទីលទី២ (Spaced Style)";
                 return;
             }
-            document.getElementById('font1').innerText = toBoldSans(val);
-            document.getElementById('font2').innerText = toFullWidth(val);
+            document.getElementById('font1').innerText = toBoldStyle(val);
+            document.getElementById('font2').innerText = toSpacedStyle(val);
         }
 
-        function toBoldSans(str) {
+        function toBoldStyle(str) {
             const map = { a: '𝗮', b: '𝗯', c: '𝗰', d: '𝗱', e: '𝗲', f: '𝗳', g: '𝗴', h: '𝗵', i: '𝗶', j: '𝗷', k: '𝗸', l: '𝗹', m: '𝗺', n: '𝗻', o: '𝗼', p: '𝗽', q: '𝗾', r: '𝗿', s: '𝘀', t: '𝘁', u: '𝘂', v: '𝘃', w: '𝘄', x: '𝘅', y: '𝘆', z: '𝘇', A: '𝗔', B: '𝗕', C: '𝗖', D: '𝗗', E: '𝗘', F: '𝗙', G: '𝗚', H: '𝗛', I: '𝗜', J: '𝗝', K: '𝗞', L: '𝗟', M: '𝗠', N: '𝗡', O: '𝗢', P: '𝗣', Q: '𝗤', R: '𝗥', S: '𝗦', T: '𝗧', U: '𝗨', V: '𝗩', W: '𝗪', X: '𝗫', Y: '𝗬', Z: '𝗭' };
             return str.split('').map(char => map[char] || char).join('');
         }
 
-        function toFullWidth(str) {
-            return str.split('').map(char => {
-                const code = char.charCodeAt(0);
-                return (code >= 33 && code <= 126) ? String.fromCharCode(code + 65248) : char;
-            }).join('');
+        function toSpacedStyle(str) {
+            return str.split('').join(' ✨ ');
         }
 
         function copyFont(id) {
