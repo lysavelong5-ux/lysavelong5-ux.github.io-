@@ -11,19 +11,19 @@
         body { font-family: 'Kantumruy Pro', sans-serif; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 to-indigo-950 min-h-screen text-gray-100 p-4 py-8">
+<body class="bg-gradient-to-br from-gray-900 to-indigo-950 min-h-screen text-gray-100 p-4 py-8 flex flex-col justify-between">
 
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-2xl mx-auto w-full">
         
         <!-- Header & Menu Switcher -->
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold tracking-tight mb-2">🎬 Creator Hub Tools</h1>
-            <p class="text-gray-400 text-sm mb-4">ជ្រើសរើស Tool ដែលបងចង់ប្រើប្រាស់ខាងក្រោម</p>
+            <p class="text-gray-400 text-sm mb-4">ជ្រើសរើស Tool ដែលអ្នកចង់ប្រើប្រាស់ខាងក្រោម</p>
             
-            <!-- បង្ហាញចំនួនអ្នកប្រើប្រាស់ (Visitor Counter) -->
+            <!-- ចំនួនអ្នកប្រើប្រាស់ -->
             <div class="inline-flex items-center gap-2 bg-gray-800/60 border border-gray-700 px-4 py-1.5 rounded-full text-xs text-gray-300 mb-6 shadow-inner">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span>ចំនួនអ្នកប្រើប្រាស់សរុប៖ <strong id="visitorCount" class="text-white">១,២៤៨</strong> នាក់</span>
+                <span>អ្នកប្រើប្រាស់សរុប៖ <strong id="visitorCount" class="text-white">១,២៤៨</strong> នាក់</span>
             </div>
             
             <div class="flex justify-center gap-2 bg-gray-800/80 p-1.5 rounded-2xl backdrop-blur-md border border-gray-700">
@@ -39,10 +39,10 @@
             </div>
         </div>
 
-        <!-- ផ្ទាំងទី ១៖ Tool សម្រាយរឿង (Recap Tool) -->
+        <!-- ផ្ទាំងទី ១៖ Tool សម្រាយរឿង -->
         <div id="tab-recap" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8">
             <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធសរសេរ Script សម្រាយរឿង</h2>
-            <p class="text-gray-500 text-sm mb-6">បង្កើតអត្ថបទរៀបរាប់សាច់រឿងសម្រាប់ทำ Video</p>
+            <p class="text-gray-500 text-sm mb-6">បង្កើតអត្ថបទរៀបរាប់សាច់រឿងសម្រាប់ធ្វើវីដេអូ</p>
 
             <div class="space-y-4">
                 <div>
@@ -91,7 +91,7 @@
         <!-- ផ្ទាំងទី ៣៖ Tool Text to Font -->
         <div id="tab-fonts" class="tool-content bg-white text-gray-800 rounded-3xl shadow-2xl p-6 md:p-8 hidden">
             <h2 class="text-xl font-bold mb-1">ប្រព័ន្ធបម្លែងអត្ថបទជាហ្វុន្តែស្អាតៗ</h2>
-            <p class="text-gray-500 text-sm mb-6">បម្លែងអត្ថបទអង់គ្លេសទៅជាស្ទីលพิเศษសម្រាប់ផុសលើ TikTok</p>
+            <p class="text-gray-500 text-sm mb-6">បម្លែងអត្ថបទអង់គ្លេសទៅជាស្ទីលពិសេសសម្រាប់ផុសលើ TikTok</p>
 
             <div class="space-y-4">
                 <div>
@@ -114,18 +114,21 @@
 
     </div>
 
+    <!-- ផ្នែក Footer បង្ហាញឈ្មោះអ្នកបង្កើត -->
+    <footer class="mt-12 text-center text-gray-500 text-xs pb-4">
+        <p>Created by: <span class="font-bold text-gray-300">SEAV LONG & SETH FT NA RAN</span></p>
+        <p class="mt-1">© C Kh media</p>
+    </footer>
+
     <script>
-        // បង្កើនចំនួនអ្នកប្រើប្រាស់ស្វ័យប្រវត្តិពេលបើកចូល Website (LocalStorage គាំទ្រការរាប់ចំនួនจริง)
         window.onload = function() {
             let views = localStorage.getItem('site_views');
             if (!views) {
-                views = 1248; // ចំនួនដើម
+                views = 1248;
             } else {
                 views = parseInt(views) + 1;
             }
             localStorage.setItem('site_views', views);
-            
-            // បំប្លែងលេខជាទ្រង់ទ្រាយមានក្បៀសស្អាត
             document.getElementById('visitorCount').innerText = views.toLocaleString();
         };
 
@@ -166,7 +169,7 @@
                 utterance.lang = 'km-KH';
                 window.speechSynthesis.speak(utterance);
             } else {
-                alert('Browser ของท่านไม่รองรับ Text-to-Speech');
+                alert('Browser របស់អ្នកមិនគាំទ្រ Text-to-Speech ទេ។');
             }
         }
 
